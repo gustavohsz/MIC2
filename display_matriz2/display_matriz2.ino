@@ -3,7 +3,7 @@ int pauseDelay = 1000;  //microsecondos para deixar cada linha acesa antes de mo
 
 String str;
 char requestString[20];
-//= " Trabalho de microcontroladores: Engenharia Eletrica IFSC Itajai";  //Mensagem a ser mostrada
+
 
 //Variáveis usadas para rolagem ambas começam em 0
 int index = 0;  //este é o caracter na string sendo mostrada
@@ -24,13 +24,6 @@ const int P = 15; const int Q =16;  const int R = 17; const int S = 18; const in
 const int U = 20; const int V =21;  const int W = 22; const int X = 23; const int Y = 24;
 const int Z = 25;
  
-//Pontuação
-const int COL =26; const int DASH = 27; const int BRA2 = 28; const int  _ = 29; const int LINE = 34;
-const int DOT =36;
- 
-//Caracteres extras
-const int  FULL =30; const int CHECK = 31; const int B2 = 32; const int TEMP = 33;
-const int SMILE =35; const int COLDOT = 36;
  
 //Matriz usada para armazenar um mapa de bits a ser mostrado(se você desejar fazer algum outro modifique os dados desta variável)
 byte data[] = {0,0,0,0,0,0};
@@ -219,33 +212,9 @@ const int _Z[] = {B11111,
                   B11111,
                  };
 
-//Os carcteres especiais
-const int _COL[] = {B0000000,B0011000,B0011000,B0000000,B0011000,B0011000,B0000000,B0000000};
- 
-const int _DASH[] = {B0000000,B0000000,B0000000,B0111110,B0000000,B0000000,B0000000,B0000000};
- 
-const int _BRA2[] = {B0010000,B0001000,B0000100,B0000100,B0001000,B0010000,B0000000,B0000000};
- 
-const int __[] = {B0000000,B0000000,B0000000,B0000000,B0000000,B0000000,B0000000,B0000000};
- 
-const int _FULL[] = {B1111111,B1111111,B1111111,B1111111,B1111111,B1111111,B1111111,B0000000};
- 
-const int _CHECK[] = {B1010101,B0101010,B1010101,B0101010,B1010101,B0101010,B1010101,B0000000};
- 
-const int _B2[] = {B0111110,B0000001,B0000001,B0001111,B0000001,B1000001,B0111110,B0000000};
- 
-const int _TEMP[] = {B0000011,B0011111,B0111111,B1111110,B1111111,B0011111,B0000011,B0000000};
- 
-const int _LINE[] = {B0000001,B0000001,B0000001,B0000001,B0000001,B0000001,B0000001,B0000000};
- 
-const int _SMILE[] = {B000000,B1100100,B1100010,B0011001,B1100010,B1100100,B0000000,B0000000};
- 
-const int _DOT[] = {B0000000,B0000000,B0000000,B0000000,B1100000,B1100000,B0000000,B0000000};
- 
-const int _COLDOT[] = {B0000000,B0110000,B0110000,B0000000,B0110011,B0110011,B0000000,B0000000};
  
 //carrega o mapa de bits de caracter numa matriz cada posição de caracter corresponde ao seu indice previamente definido, isto é _A (mapa de bits do "a")se o indice 0 é do "A", então letters[A] retornará o mapa de bits de "A")
-const int* letters[] = {_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_S,_T,_U,_V,_W,_X,_Y,_Z,_COL,_DASH,_BRA2,__, _FULL, _CHECK, _B2, _TEMP, _LINE, _SMILE, _DOT, _COLDOT};
+const int* letters[] = {_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_S,_T,_U,_V,_W,_X,_Y,_Z};
  
 //definição do Arduino roda somente na inicialização
 void setup()
@@ -290,8 +259,8 @@ void loadSprite(){
     }
   }
   offset++; //incrementa o offset de uma linha
-  //se offset é de 8, carregar o par de caracteres a seguir na proxima vez
-  if(offset==8){offset = 0; index++; if(index==sizeof(requestString)-2){index=0;}}
+  //se offset é de 5, carregar o par de caracteres a seguir na proxima vez
+  if(offset==5){offset = 0; index++; if(index==sizeof(requestString)-2){index=0;}}
 }
  
 void showSprite(int vel2){
@@ -375,18 +344,6 @@ int getChar(char charachter){
   case 'y': returnValue = Y; break;
   case 'Z': returnValue = Z; break;
   case 'z': returnValue = Z; break;
-  case ' ': returnValue = _; break;
-  case '3': returnValue = B2; break;
-  case '<': returnValue = TEMP; break;
-  case '*': returnValue = FULL; break;
-  case '|': returnValue = LINE; break;
-  case '_': returnValue = _; break;
-  case ':': returnValue = COL; break;
-  case '-': returnValue = DASH; break;
-  case ')': returnValue = BRA2; break;
-  case '%': returnValue = SMILE; break;
-  case '.': returnValue = DOT; break;
-  case '^': returnValue = COLDOT; break;
   }
   return returnValue;
 }
