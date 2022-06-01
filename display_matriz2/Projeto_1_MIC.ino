@@ -1,3 +1,13 @@
+/*
+
+Gustavo H. S. Zanetti
+
+Projeto 1 MICROCONTROLADORES 
+
+DISPLAY DESLIZANTE PROGRAMÁVEL
+
+*/
+
 int vel = 20; //número de vezes que o frame será repetido
 int pauseDelay = 1000;  //microsecondos para deixar cada linha acesa antes de mover para o próximo
 
